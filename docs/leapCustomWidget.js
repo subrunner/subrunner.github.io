@@ -185,3 +185,4 @@ acme.yesNoWidget = {
     }
 }
 nitro.registerWidget(acme.yesNoWidget);
+console.log("Registered widget. ", nitro);
