@@ -1,6 +1,8 @@
 alert("Custom Widget loaded.");
 if (typeof acme === 'undefined') {
-    acme = {}; // use an isolated namespace
+    acme = {
+	    makeHTMLSafe: (content)=> content?.replace("<","&lt;").replace(">", "&gt;")
+    }; // use an isolated namespace
 }
 
 acme.yesNoWidget = {
@@ -184,5 +186,74 @@ acme.yesNoWidget = {
         return widgetInstance;
     }
 }
+acme.pageNavHeaderWidget = {
+
+    id: "acme.PageNav",
+    version: "1.0.0",
+    apiVersion: "1.0.0",
+    label: {
+        "default": "ACME Page Nav Header",
+        "nl": "Koptekst paginanavigatie",
+    },
+    description: {
+        "default": "ACME Page Nav widget",
+        "nl": "Koptekst paginanavigatie widget"
+    },
+    category: {
+        id: "acme-display-widgets",
+        label: {
+            "default": "ACME Display",
+            "nl": "ACME Scherm"
+        }
+    },
+    formPalette: true,
+    appPagePalette: false,
+    iconClassName: "acmePageNavHeaderIcon",
+    builtInProperties: [],
+    properties: [],
+
+    // initialize widget in the DOM, with initial properties and event callbacks
+    instantiate: function (context, domNode) {
+        const widgetInst = {
+            _init: function () {
+                if (context.mode === 'run' || context.mode === 'preview') {
+                    // TODO - avoid this timeout (necessary because things aren't quite ready yet)
+                    setTimeout(() => {
+                        const rootNode = document.createElement('div');
+                        rootNode.className = 'acmePageNavHeader';
+                        domNode.appendChild(rootNode);
+                        const currentPage = context.page;
+                        // use the JavaScript API to render a list of page buttons
+                        context.form.getPageIds().forEach((pageId, index) => {
+                            const page = context.form.getPage(pageId);
+                            const btn = document.createElement('button');
+                            btn.innerHTML = acme.makeHTMLSafe(page.getTitle() || `Page ${index + 1}`);
+                            if (page === currentPage) {
+                                btn.setAttribute('disabled', 'true');
+                            } else {
+                                btn.addEventListener('click', () => {
+                                    // use the JavaScript API to select a page
+                                    context.form.selectPage(pageId);
+                                });
+                            }
+                            rootNode.appendChild(btn);
+                        });
+                    }, 0);
+                } else {
+                    domNode.innerHTML = '<div>ACME Page Nav Header (Preview to see)</div>';
+                }
+            },
+
+            setProperty: function (propName, propValue) {
+                // nothing to set
+            },
+        };
+        widgetInst._init();
+        return widgetInst;
+    }
+};
+
+// register the widgets
+nitro.registerWidget(acme.pageNavHeaderWidget);
 nitro.registerWidget(acme.yesNoWidget);
 console.log("Registered widget. ", nitro);
