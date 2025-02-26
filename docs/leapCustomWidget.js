@@ -1,4 +1,4 @@
-alert("Custom Widget loaded.");
+alert("Custom Widget loaded. - Version 1");
 if (typeof acme === 'undefined') {
     acme = {
 	    makeHTMLSafe: (content)=> content?.replace("<","&lt;").replace(">", "&gt;")
