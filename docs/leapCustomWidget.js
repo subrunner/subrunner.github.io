@@ -259,3 +259,23 @@ acme.pageNavHeaderWidget = {
 nitro.registerWidget(acme.pageNavHeaderWidget);
 nitro.registerWidget(acme.yesNoWidget);
 console.log("Registered widget. ", nitro);
+
+// do our own stuff
+function waitFor(selector, maxWaitTime, successCallback){
+	let ret = document.quereySelector(selector);
+	if (ret){
+		successCallback(ret);
+		return;
+	}
+	if (maxWaitTime === 0){
+		console.log("Did not find element...");
+		return;
+	}
+
+	setTimeout(() => {
+		waitFor(selector, maxWaitTime - 500, successCallback);
+	}, 500);
+}
+waitFor("#F_Form1-P_NewPage1-F_name-widget", 5000, (elInput) => {
+	elInput.addEventListener('click',() => alert("Input clicked"));
+});
