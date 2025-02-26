@@ -1,4 +1,4 @@
-alert("Custom Widget loaded. - Version 1");
+alert("Custom Widget loaded. - Version 2");
 if (typeof acme === 'undefined') {
     acme = {
 	    makeHTMLSafe: (content)=> content?.replace("<","&lt;").replace(">", "&gt;")
@@ -214,6 +214,8 @@ acme.pageNavHeaderWidget = {
 
     // initialize widget in the DOM, with initial properties and event callbacks
     instantiate: function (context, domNode) {
+	    alert("Page widget was instantiated");
+	    console.log(context, domNode);
         const widgetInst = {
             _init: function () {
                 if (context.mode === 'run' || context.mode === 'preview') {
