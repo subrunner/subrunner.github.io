@@ -1,4 +1,4 @@
-alert("Custom Widget loaded. - Version 3");
+console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 3");
 if (typeof acme === 'undefined') {
     acme = {
 	    makeHTMLSafe: (content)=> content?.replace("<","&lt;").replace(">", "&gt;")
@@ -260,25 +260,7 @@ nitro.registerWidget(acme.pageNavHeaderWidget);
 nitro.registerWidget(acme.yesNoWidget);
 console.log("Registered widget. ", nitro);
 
-// do our own stuff
-function waitFor(selector, maxWaitTime, successCallback){
-	let ret = document.querySelector(selector);
-	if (ret){
-		successCallback(ret);
-		return;
-	}
-	if (maxWaitTime === 0){
-		console.log("Did not find element...");
-		return;
-	}
 
-	setTimeout(() => {
-		waitFor(selector, maxWaitTime - 500, successCallback);
-	}, 500);
-}
-waitFor("#F_Form1-P_NewPage1-F_name-widget", 5000, (elInput) => {
-	elInput.addEventListener('click',() => alert("Input clicked"));
-});
 
 
 if (typeof leapSample === 'undefined') {
@@ -349,7 +331,7 @@ leapSample.colorPickerWidget = {
             id: "theHeight",
             propType: "string",
             label: {
-                "default": "Height (pw)",
+                "default": "Height (px)",
                 "it": "Altezza (px)"
             },
             defaultValue: ""
