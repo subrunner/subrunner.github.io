@@ -23,6 +23,9 @@
       {
         id: "title"
       },
+      {
+        id: "id",
+      },
     ],
     properties: [ // custom properties, of prescribed types (see datatypes)
       {
