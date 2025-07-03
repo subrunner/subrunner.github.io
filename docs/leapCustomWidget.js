@@ -873,10 +873,6 @@ leapSample.customStyledTextbox = {
     {
       id: "required"
     },
-    {
-      id: "propWithDefault",
-      defaultValue: "My default Text"
-    },
   ],
   properties: [ // custom properties, of prescribed types (see datatypes)
     {
