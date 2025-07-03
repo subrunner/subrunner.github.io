@@ -905,77 +905,84 @@ leapSample.customStyledTextbox = {
    */
   instantiate: function (context, domNode, initialProps, eventManager) {
     const TAG_NAME = "leapSample.customStyledTextbox";
-    const widgetHTML = `
+
+    try {
+      console.log(TAG_NAME, "Instantiating widget", context, domNode);
+      const widgetHTML = `
       <fieldset>
         <legend></legend>
           <div class="flex-wrapper">
-             <input type="text" id="myCustomTextbox_${ Date.now()}"></input>
+             <input type="text" id="myCustomTextbox_${Date.now()}"></input>
          </div>
       </fieldset>
       `;
 
-    domNode.innerHTML = widgetHTML;
-    const _fieldsetNode = domNode.firstChild;
-    const elTitle = _fieldsetNode.querySelector('legend');
-    const _flexNode = _fieldsetNode.querySelector('.flex-wrapper');
-    const elValue = _flexNode.querySelector('input');
+      domNode.innerHTML = widgetHTML;
+      const _fieldsetNode = domNode.firstChild;
+      const elTitle = _fieldsetNode.querySelector('legend');
+      const _flexNode = _fieldsetNode.querySelector('.flex-wrapper');
+      const elValue = _flexNode.querySelector('input');
 
-    // set initial prop values
-    Object.keys(initialProps).forEach((propName) => {
-      ret.setProperty( propName,  initialProps[propName] );
-    });
+      // set initial prop values
+      Object.keys(initialProps).forEach((propName) => {
+        ret.setProperty(propName, initialProps[propName]);
+      });
 
-    // propagate events
-    elValue.addEventListener("input", () => {
-      // will trigger call to getValue()
-      eventManager.sendEvent('onChange');
-    });
+      // propagate events
+      elValue.addEventListener("input", () => {
+        // will trigger call to getValue()
+        eventManager.sendEvent('onChange');
+      });
 
-    const ret = {
-      // (optional) for display in various parts of the UI
-      getDisplayTitle: function () {
-        return initialProps.title;
-      },
+      const ret = {
+        // (optional) for display in various parts of the UI
+        getDisplayTitle: function () {
+          return initialProps.title;
+        },
 
-      // (required) for Leap to get widget's data value
-      getValue: function () {
-        return elValue.value;
-      },
+        // (required) for Leap to get widget's data value
+        getValue: function () {
+          return elValue.value;
+        },
 
-      // (required) for Leap to set widget's data value
-      setValue: function (val) {
-        elValue.value = val;
-      },
+        // (required) for Leap to set widget's data value
+        setValue: function (val) {
+          elValue.value = val;
+        },
 
-      // (optional) for additional validation of value
-      validateValue: function (val) {
-        // return true, false, or custom error message
-        if (!val) return "Bitte setzen Sie einen Wert.";
-        return true;
-      },
+        // (optional) for additional validation of value
+        validateValue: function (val) {
+          // return true, false, or custom error message
+          if (!val) return "Bitte setzen Sie einen Wert.";
+          return true;
+        },
 
-      // (required) called when properties change in the authoring environment, or via JavaScript API
-      setProperty: function (propName, propValue) {
-        switch(propName){
-          case 'title': elTitle.innerHTML = propValue; break;
-          case 'fontSize': elValue.style.fontSize = propValue + "px";
-          default: console.log(TAG_NAME,"SEtting property " + propName + " to value " + propValue );
+        // (required) called when properties change in the authoring environment, or via JavaScript API
+        setProperty: function (propName, propValue) {
+          switch (propName) {
+            case 'title': elTitle.innerHTML = propValue; break;
+            case 'fontSize': elValue.style.fontSize = propValue + "px";
+            default: console.log(TAG_NAME, "SEtting property " + propName + " to value " + propValue);
+          }
+        },
+
+        // (optional) method to enable/disable widget
+        setDisabled: function (isDisabled) {
+          elValue.disabled = isDisabled
+        },
+
+        // (optional) determines what the author can do with the widget via custom JavaScript
+        getJSAPIFacade: function () {
+          return {
+
+          };
         }
-      },
-
-      // (optional) method to enable/disable widget
-      setDisabled: function (isDisabled) {
-        elValue.disabled = isDisabled
-      },
-
-      // (optional) determines what the author can do with the widget via custom JavaScript
-      getJSAPIFacade: function () {
-        return {
-
-        };
-      }
-    };
-    return ret;
+      };
+      return ret;
+    } catch (e) {
+      console.error(TAG_NAME, "Could not instantiate widget!", e);
+      throw e;
+    }
   }
 }
 nitro.registerWidget(leapSample.colorPickerWidget);
