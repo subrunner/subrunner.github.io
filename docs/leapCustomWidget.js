@@ -3,7 +3,6 @@
 
   const CATEGORY = "hcl.leap.sample.widgets";
   const WIDGET_ID = CATEGORY + "exampleWidget";
-  console.log(WIDGET_ID, "Registering widget");
 
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
@@ -31,6 +30,10 @@
       {
         id: "required",
       },
+      {
+        id: "seenInOverview",
+        defaultValue: true
+      }
     ],
     properties: [ // custom properties, of prescribed types (see datatypes)
       {
@@ -96,5 +99,6 @@
       };
     }
   };
+  console.log(WIDGET_ID, "Registering widget", myWidgetDefinition);
   nitro.registerWidget(myWidgetDefinition);
 })();
