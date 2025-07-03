@@ -88,5 +88,5 @@
       };
     }
   };
-  nitro.registerWidget(myWidgetDefintion);
+  nitro.registerWidget(myWidgetDefinition);
 })();
