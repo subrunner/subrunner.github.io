@@ -1,10 +1,12 @@
 (function () {
 
 
-  const TAG_NAME = "exampleWidget";
-  console.log(TAG_NAME, "Registering widget");
+  const CATEGORY = "hcl.leap.sample.widgets";
+  const WIDGET_ID = CATEGORY + "exampleWidget";
+  console.log(WIDGET_ID, "Registering widget");
+
   const myWidgetDefinition = {
-    id: 'example.YesNo', // uniquely identifies this widget
+    id: WIDGET_ID, // uniquely identifies this widget
     version: '2.0.0', // the widget's version
     apiVersion: '1.0.0', // the version of this API
     label: 'Yes/No', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
@@ -15,7 +17,7 @@
     },
     // for placement in the palette
     category: {
-      id: 'hcl.leap.sample.widgets',
+      id: CATEGORY,
       label: 'Leap Samples'
     },
     iconClassName: 'myYesNoIcon', // styling of this class expected in custom .css
@@ -25,6 +27,9 @@
       },
       {
         id: "id",
+      },
+      {
+        id: "required",
       },
     ],
     properties: [ // custom properties, of prescribed types (see datatypes)
@@ -50,7 +55,7 @@
      * @returns 
      */
     instantiate: function (context, domNode, initialProps, eventManager) {
-      console.log(TAG_NAME, "instantiate entering", context, domNode, initialProps);
+      console.log(WIDGET_ID, "instantiate entering", context, domNode, initialProps);
       return {
         // (optional) for display in various parts of the UI
         getDisplayTitle: function () {
