@@ -214,7 +214,6 @@ acme.pageNavHeaderWidget = {
 
     // initialize widget in the DOM, with initial properties and event callbacks
     instantiate: function (context, domNode) {
-	    alert("Page widget was instantiated");
 	    console.log(context, domNode);
         const widgetInst = {
             _init: function () {
