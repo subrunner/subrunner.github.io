@@ -4,14 +4,14 @@ console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 3");
 
 
   const CATEGORY = "hcl.leap.sample.widgets";
-  const WIDGET_ID = CATEGORY + "exampleWidget";
+  const WIDGET_ID = CATEGORY + "._exampleWidget";
 
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
     version: '2.0.0', // the widget's version
     apiVersion: '1.0.0', // the version of this API
-    label: 'Yes/No', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
-    description: 'Allows user to choose "Yes" or "No"', // can be internationalized just like label
+    label: 'Leeres Template Testwidget', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
+    description: 'Macht nichts', // can be internationalized just like label
     datatype: {
       type: 'string', // must be one of 'string', 'date', 'number', 'boolean', 'time', 'timestamp'
       defaultValue: 'Yes', // OPTIONAL - default when user hasn't set anything
@@ -1021,9 +1021,9 @@ leapSample.customStyledTextbox = {
     const TAG_NAME = "leapSample.customStyledTextbox";
 
     try {
-      console.log(TAG_NAME, "Instantiating widget", context, domNode);
+      console.log(TAG_NAME, "Instantiating widget 1", context, domNode);
       const widgetHTML = `
-      <fieldset>
+      <fieldset id="top">
         <legend></legend>
           <div class="flex-wrapper">
              <input type="text" id="myCustomTextbox_${Date.now()}"></input>
@@ -1032,7 +1032,8 @@ leapSample.customStyledTextbox = {
       `;
 
       domNode.innerHTML = widgetHTML;
-      const _fieldsetNode = domNode.firstChild;
+      
+      const _fieldsetNode = domNode.getElementById("top");
       const elTitle = _fieldsetNode.querySelector('legend');
       const _flexNode = _fieldsetNode.querySelector('.flex-wrapper');
       const elValue = _flexNode.querySelector('input');
