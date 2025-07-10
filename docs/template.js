@@ -7,7 +7,7 @@
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
     version: '2.0.0', // the widget's version
-    apiVersion: '1.0.0', // the version of this API
+    apiVersion: '1.0.0', // the version of this API (use this for repeated loading)
     label: 'Yes/No', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
     description: 'Allows user to choose "Yes" or "No"', // can be internationalized just like label
     datatype: {
@@ -77,7 +77,12 @@
 
         // (optional) for additional validation of value
         validateValue: function (val) {
-          // return true, false, or custom error message
+          // success: return null; otherwise: return custom error message
+          // error message will also trigger setErrorMessage
+        },
+
+        // (optional) to display validation error message
+        setErrorMessage: function(error) {
         },
 
         // (required) called when properties change in the authoring environment, or via JavaScript API
