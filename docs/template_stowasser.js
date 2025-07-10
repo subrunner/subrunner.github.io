@@ -59,7 +59,6 @@
      */
     instantiate: function (context, domNode, initialProps, eventManager) {
       console.log(WIDGET_ID, "instantiate entering", context, domNode, initialProps);
-      console.log(`Version: ${version}`);
       domNode.innerHTML =
         `<fieldset>\n` +
         `  <label for="textbox">Hello:</label>\n` +
