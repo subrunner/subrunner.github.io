@@ -1033,7 +1033,7 @@ leapSample.customStyledTextbox = {
 
       domNode.innerHTML = widgetHTML;
       
-      const _fieldsetNode = domNode.firstChild;
+      const _fieldsetNode = domNode.firstElementChild;
       console.log("Dom node now", domNode, _fieldsetNode);
       const elTitle = _fieldsetNode.querySelector('legend');
       const _flexNode = _fieldsetNode.querySelector('.flex-wrapper');
