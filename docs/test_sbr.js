@@ -7,7 +7,7 @@
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
     version: '1.0.0', // the widget's version
-    apiVersion: '1.0.4', // the version of this API
+    apiVersion: '1.0.5', // the version of this API
     label: 'Kontaktdaten', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
     description: 'Standardmäßiges Kontaktdatenformular', // can be internationalized just like label
     datatype: {
@@ -76,6 +76,7 @@
             <div class="flex-wrapper">
               <input type="text" ></input>
           </div>
+          <div class="error" style="color:red"></div>
         </fieldset>
       </div>
       `;
@@ -88,6 +89,7 @@
 
       const elValueName = _elFieldsetName.querySelector('input');
       const elValueEmail = _elFieldsetEmail.querySelector('input');
+      const elEmailError = _elFieldsetEmail.querySelector('.error');
 
       // propagate events
       elValueName.addEventListener("input", () => {
@@ -139,24 +141,26 @@
           elValueName.value = obj.name || ""
         },
 
-
+        setErrorMessage: function(error){
+          elEmailError.innerHTML = error? error:"";
+        },
 
         // (optional) for additional validation of value
-        // validateValue: function (val) {
-        //   console.log(WIDGET_ID, "validateValue entering", val);
-        //   let obj = getJsonValue(val);
-        //   // return true, false, or custom error message
-        //   if (!obj.name) return "Bitte setzten Sie einen Namen";
-        //   if (!obj.email) return "Bitte Email eingeben";
-        //   if (emailRegex) {
-        //     let validation = obj.email.match(emailRegex);
-        //     console.log(WIDGET_ID, "validateValue", obj, validation);
-        //     if (!validation?.length) return "Bitte gültige Email eingeben";
-        //   } else {
-        //     console.log(WIDGET_ID, "validateValue", "Kein regexp gesetzt");
-        //   }
-        //   return true;
-        // },
+        validateValue: function (val) {
+          console.log(WIDGET_ID, "validateValue entering", val);
+          let obj = getJsonValue(val);
+          // return true, false, or custom error message
+          if (!obj.name) return "Bitte setzten Sie einen Namen";
+          if (!obj.email) return "Bitte Email eingeben";
+          if (emailRegex) {
+            let validation = obj.email.match(emailRegex);
+            console.log(WIDGET_ID, "validateValue", obj, validation);
+            if (!validation?.length) return "Bitte gültige Email eingeben";
+          } else {
+            console.log(WIDGET_ID, "validateValue", "Kein regexp gesetzt");
+          }
+          return null;
+        },
 
         // (required) called when properties change in the authoring environment, or via JavaScript API
         setProperty: function (propName, propValue) {
