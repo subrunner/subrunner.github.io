@@ -8,18 +8,18 @@
     id: WIDGET_ID, // uniquely identifies this widget
     version: '2.0.0', // the widget's version
     apiVersion: '1.0.0', // the version of this API
-    label: 'Yes/No', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
-    description: 'Allows user to choose "Yes" or "No"', // can be internationalized just like label
+    label: 'Textbox', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
+    description: 'Textbox', // can be internationalized just like label
     datatype: {
       type: 'string', // must be one of 'string', 'date', 'number', 'boolean', 'time', 'timestamp'
-      defaultValue: 'Yes', // OPTIONAL - default when user hasn't set anything
+      //defaultValue: '', // OPTIONAL - default when user hasn't set anything
     },
     // for placement in the palette
     category: {
       id: CATEGORY,
       label: 'Leap Samples'
     },
-    iconClassName: 'myYesNoIcon', // styling of this class expected in custom .css
+    iconClassName: 'sccTextbox', // styling of this class expected in custom .css
     builtInProperties: [ // use existing properties: 'title', 'required', etc
       {
         id: "title"
@@ -47,6 +47,13 @@
           "default": false
         }
       },
+      {
+      id: "fontSize",
+      propType: "number",
+      label: "Schriftgröße",
+      defaultValue: {
+        "default": 12
+      }
     ],
 
     /**
