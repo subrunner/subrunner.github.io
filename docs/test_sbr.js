@@ -7,7 +7,7 @@
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
     version: '1.0.0', // the widget's version
-    apiVersion: '1.0.2', // the version of this API
+    apiVersion: '1.0.3', // the version of this API
     label: 'Kontaktdaten', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
     description: 'Standardmäßiges Kontaktdatenformular', // can be internationalized just like label
     datatype: {
@@ -100,7 +100,6 @@
         eventManager.sendEvent('onChange');
       });
 
-      const a = () => {console.log("test")}
       const getJsonValue = (val)=> {
         let obj = {};
         if (typeof val == "string") {
@@ -156,7 +155,7 @@
           } else {
             console.log(WIDGET_ID, "validateValue", "Kein regexp gesetzt");
           }
-          
+          return true;
         },
 
         // (required) called when properties change in the authoring environment, or via JavaScript API
