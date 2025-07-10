@@ -8,8 +8,8 @@
     id: WIDGET_ID, // uniquely identifies this widget
     version: '1.0.0', // the widget's version
     apiVersion: '1.0.0', // the version of this API
-    label: 'Yes/No - Stowasser', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
-    description: 'Allows user to choose "Yes" or "No"', // can be internationalized just like label
+    label: 'Textbox - Stowasser', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
+    description: 'Displays a textbox', // can be internationalized just like label
     datatype: {
       type: 'string', // must be one of 'string', 'date', 'number', 'boolean', 'time', 'timestamp'
       defaultValue: 'Yes', // OPTIONAL - default when user hasn't set anything
@@ -59,6 +59,11 @@
      */
     instantiate: function (context, domNode, initialProps, eventManager) {
       console.log(WIDGET_ID, "instantiate entering", context, domNode, initialProps);
+      domNode.innerHTML = 
+        `
+        <label for="textbox">Enter text:</label>
+        <input type="text" id="textbox" name="textbox" placeholder="Type here...">
+        `
       return {
         // (optional) for display in various parts of the UI
         getDisplayTitle: function () {
