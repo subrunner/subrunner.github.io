@@ -2,7 +2,7 @@
 
 
   const CATEGORY = "hcl.leap.sample.widgets";
-  const WIDGET_ID = CATEGORY + ".exampleWidget";
+  const WIDGET_ID = CATEGORY + ".SccWidget";
 
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
