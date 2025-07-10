@@ -1039,11 +1039,6 @@ leapSample.customStyledTextbox = {
       const _flexNode = _fieldsetNode.querySelector('.flex-wrapper');
       const elValue = _flexNode.querySelector('input');
 
-      // set initial prop values
-      Object.keys(initialProps).forEach((propName) => {
-        ret.setProperty(propName, initialProps[propName]);
-      });
-
       // propagate events
       elValue.addEventListener("input", () => {
         // will trigger call to getValue()
@@ -1094,6 +1089,11 @@ leapSample.customStyledTextbox = {
           };
         }
       };
+
+      // set initial prop values
+      Object.keys(initialProps).forEach((propName) => {
+        ret.setProperty(propName, initialProps[propName]);
+      });
       return ret;
     } catch (e) {
       console.error(TAG_NAME, "Could not instantiate widget!", e);
