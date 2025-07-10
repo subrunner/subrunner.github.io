@@ -1,4 +1,3 @@
-
 (function () {
 
 
@@ -7,7 +6,7 @@
 
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
-    version: '1.0.1', // the widget's version
+    version: '1.0.2', // the widget's version
     apiVersion: '1.0.0', // the version of this API
     label: 'Kontaktdaten', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
     description: 'Standardmäßiges Kontaktdatenformular', // can be internationalized just like label
@@ -116,11 +115,10 @@
         return obj;
       };
 
-      getJsonValue("");
+      let emailRegex = null;
 
       const ret = {
-        emailRegex: null,
-
+        
         // (optional) for display in various parts of the UI
         getDisplayTitle: function () {
           return initialProps.title;
@@ -151,8 +149,8 @@
           // return true, false, or custom error message
           if (!obj.name) return "Bitte setzten Sie einen Namen";
           if (!obj.email) return "Bitte Email eingeben";
-          if (this.emailRegex) {
-            let validation = obj.email.match(this.emailRegex);
+          if (emailRegex) {
+            let validation = obj.email.match(emailRegex);
             console.log(WIDGET_ID, "validateValue", obj, validation);
             if (!validation.length) return "Bitte gültige Email eingeben";
           } else {
@@ -164,7 +162,7 @@
         // (required) called when properties change in the authoring environment, or via JavaScript API
         setProperty: function (propName, propValue) {
           switch (propName) {
-            case 'emailValidierung': this.emailRegex = new RegExp(propValue); break;
+            case 'emailValidierung': emailRegex = new RegExp(propValue); break;
             default: console.log(WIDGET_ID, "SEtting property " + propName + " to value " + propValue);
           }
         },
