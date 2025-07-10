@@ -6,8 +6,8 @@
 
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
-    version: '1.0.2', // the widget's version
-    apiVersion: '1.0.0', // the version of this API
+    version: '1.0.0', // the widget's version
+    apiVersion: '1.0.1', // the version of this API
     label: 'Kontaktdaten', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
     description: 'Standardmäßiges Kontaktdatenformular', // can be internationalized just like label
     datatype: {
