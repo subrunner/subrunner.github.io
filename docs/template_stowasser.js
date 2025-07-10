@@ -1,9 +1,12 @@
 // 10.07.2025
 
 (function () {
+  const CATEGORY = "hcl.leap.sample.widgets";
+  const WIDGET_ID = CATEGORY + ".exampleStowasser";
+
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
-    version: '2.0.0', // the widget's version
+    version: '1.0.0', // the widget's version
     apiVersion: '1.0.0', // the version of this API
     label: 'Yes/No - Stowasser', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
     description: 'Allows user to choose "Yes" or "No"', // can be internationalized just like label
