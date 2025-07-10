@@ -65,11 +65,12 @@
      * @returns 
      */
     instantiate: function (context, domNode, initialProps, eventManager) {
-      console.log(WIDGET_ID, "instantiate entering", context, domNode, initialProps);
-      try {
-      console.log(TAG_NAME, "Instantiating widget", context, domNode);
+       const TAG_NAME = "leapSample.customStyledTextbox";
+
+    try {
+      console.log(TAG_NAME, "Instantiating widget 1", context, domNode);
       const widgetHTML = `
-      <fieldset>
+      <fieldset id="top">
         <legend></legend>
           <div class="flex-wrapper">
              <input type="text" id="myCustomTextbox_${Date.now()}"></input>
@@ -78,15 +79,12 @@
       `;
 
       domNode.innerHTML = widgetHTML;
-      const _fieldsetNode = domNode.firstChild;
+      
+      const _fieldsetNode = domNode.firstElementChild;
+      console.log("Dom node now", domNode, _fieldsetNode);
       const elTitle = _fieldsetNode.querySelector('legend');
       const _flexNode = _fieldsetNode.querySelector('.flex-wrapper');
       const elValue = _flexNode.querySelector('input');
-
-      // set initial prop values
-      Object.keys(initialProps).forEach((propName) => {
-        ret.setProperty(propName, initialProps[propName]);
-      });
 
       // propagate events
       elValue.addEventListener("input", () => {
@@ -138,13 +136,18 @@
           };
         }
       };
+
+      // set initial prop values
+      Object.keys(initialProps).forEach((propName) => {
+        ret.setProperty(propName, initialProps[propName]);
+      });
       return ret;
     } catch (e) {
       console.error(TAG_NAME, "Could not instantiate widget!", e);
       throw e;
     }
-    }
   }
+}
   console.log(WIDGET_ID, "Registering widget", myWidgetDefinition);
   nitro.registerWidget(myWidgetDefinition);
 })();
