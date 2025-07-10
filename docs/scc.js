@@ -47,13 +47,6 @@
           "default": false
         }
       },
-      {
-      id: "fontSize",
-      propType: "number",
-      label: "Schriftgröße",
-      defaultValue: {
-        "default": 12
-      }
     ],
 
     /**
