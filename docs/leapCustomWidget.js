@@ -1,4 +1,4 @@
-console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 4");
+console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 5");
 
 (function () {
 
@@ -1256,7 +1256,7 @@ nitro.registerWidget(leapSample.customStyledTextbox);
         setProperty: function (propName, propValue) {
           switch (propName) {
             case 'emailValidierung': this.emailRegex = new RegExp(propValue); break;
-            default: console.log(TAG_NAME, "SEtting property " + propName + " to value " + propValue);
+            default: console.log(WIDGET_ID, "SEtting property " + propName + " to value " + propValue);
           }
         },
 
