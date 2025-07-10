@@ -1,4 +1,4 @@
-console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 6");
+console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 7");
 
 (function () {
 
@@ -1206,6 +1206,23 @@ nitro.registerWidget(leapSample.customStyledTextbox);
         eventManager.sendEvent('onChange');
       });
 
+      const a = () => {console.log("test")}
+      const getJsonValue = (val)=> {
+        let obj = {};
+        if (typeof val == "string") {
+          try {
+            obj = JSON.parse(val);
+          } catch (e) {
+            console.error(WIDGET_ID, "getJsonValue", "unexpected value ", val);
+          }
+        } else if (typeof val == "object") {
+          obj = val;
+        }
+        return obj;
+      };
+
+      getJsonValue("");
+
       const ret = {
         emailRegex: null,
 
@@ -1225,29 +1242,17 @@ nitro.registerWidget(leapSample.customStyledTextbox);
 
         // (required) for Leap to set widget's data value
         setValue: function (val) {
-          let obj = this.getJsonValue(val);
+          let obj = getJsonValue(val);
           elValueEmail.value = obj.email || ""
           elValueName.value = obj.name || ""
         },
 
-        getJsonValue: function(val){
-          let obj = {};
-          if (typeof val == "string") {
-            try {
-              obj = JSON.parse(val);
-            } catch (e) {
-              console.error(WIDGET_ID, "getJsonValue", "unexpected value ", val);
-            }
-          } else if (typeof val == "object"){
-            obj = val;
-          }
-          return obj;
-        },
+
 
         // (optional) for additional validation of value
         validateValue: function (val) {
           console.log(WIDGET_ID, "validateValue entering", val);
-          let obj = this.getJsonValue(val);
+          let obj = getJsonValue(val);
           // return true, false, or custom error message
           if (!obj.name) return "Bitte setzten Sie einen Namen";
           if (!obj.email) return "Bitte Email eingeben";
