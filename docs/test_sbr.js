@@ -7,7 +7,7 @@
   const myWidgetDefinition = {
     id: WIDGET_ID, // uniquely identifies this widget
     version: '1.0.0', // the widget's version
-    apiVersion: '1.0.1', // the version of this API
+    apiVersion: '1.0.2', // the version of this API
     label: 'Kontaktdaten', // Display label for the widget in the pallette. Alternative: label:{'default':'Yes/No','de':'Ja/Nein'}
     description: 'Standardmäßiges Kontaktdatenformular', // can be internationalized just like label
     datatype: {
@@ -152,7 +152,7 @@
           if (emailRegex) {
             let validation = obj.email.match(emailRegex);
             console.log(WIDGET_ID, "validateValue", obj, validation);
-            if (!validation.length) return "Bitte gültige Email eingeben";
+            if (!validation?.length) return "Bitte gültige Email eingeben";
           } else {
             console.log(WIDGET_ID, "validateValue", "Kein regexp gesetzt");
           }
