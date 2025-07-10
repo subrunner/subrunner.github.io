@@ -61,8 +61,10 @@
       console.log(WIDGET_ID, "instantiate entering", context, domNode, initialProps);
       domNode.innerHTML = 
         `
-        <label for="textbox">Enter text:</label>
-        <input type="text" id="textbox" name="textbox" placeholder="Type here...">
+        <fieldset>
+          <label for="textbox">Enter text:</label>
+          <input type="text" id="textbox" name="textbox" placeholder="...">
+        </fieldset>
         `
       return {
         // (optional) for display in various parts of the UI
