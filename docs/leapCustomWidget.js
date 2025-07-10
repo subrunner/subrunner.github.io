@@ -1,4 +1,4 @@
-console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 3");
+console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 4");
 
 (function () {
 
