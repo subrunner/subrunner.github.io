@@ -64,7 +64,7 @@
         `<fieldset>\n` +
         `  <label for="textbox">Hello:</label>\n` +
         `  <input type="text" id="textbox" name="textbox" placeholder="World...">\n` +
-        `</fieldset>\n` 
+        `</fieldset>`;
       return {
         // (optional) for display in various parts of the UI
         getDisplayTitle: function () {
