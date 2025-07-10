@@ -1,4 +1,4 @@
-console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 5");
+console.log("LEAP ERWEITERUNGEN: Custom Widget loaded. - Version 6");
 
 (function () {
 
@@ -1225,26 +1225,35 @@ nitro.registerWidget(leapSample.customStyledTextbox);
 
         // (required) for Leap to set widget's data value
         setValue: function (val) {
-          let obj = {};
-          if (val) {
-            try {
-              obj = JSON.parse(val);
-            } catch (e) {
-              console.error(WIDGET_ID, "setValue", "unexpected value ", val);
-            }
-          }
+          let obj = this.getJsonValue(val);
           elValueEmail.value = obj.email || ""
           elValueName.value = obj.name || ""
         },
 
+        getJsonValue: function(val){
+          let obj = {};
+          if (typeof val == "string") {
+            try {
+              obj = JSON.parse(val);
+            } catch (e) {
+              console.error(WIDGET_ID, "getJsonValue", "unexpected value ", val);
+            }
+          } else if (typeof val == "object"){
+            obj = val;
+          }
+          return obj;
+        },
+
         // (optional) for additional validation of value
         validateValue: function (val) {
+          console.log(WIDGET_ID, "validateValue entering", val);
+          let obj = this.getJsonValue(val);
           // return true, false, or custom error message
-          if (!val.name) return "Bitte setzten Sie einen Namen";
-          if (!val.email) return "Bitte Email eingeben";
+          if (!obj.name) return "Bitte setzten Sie einen Namen";
+          if (!obj.email) return "Bitte Email eingeben";
           if (this.emailRegex) {
-            let validation = val.email.match(this.emailRegex);
-            console.log(WIDGET_ID, "validateValue", val, validation);
+            let validation = obj.email.match(this.emailRegex);
+            console.log(WIDGET_ID, "validateValue", obj, validation);
             if (!validation.length) return "Bitte gültige Email eingeben";
           } else {
             console.log(WIDGET_ID, "validateValue", "Kein regexp gesetzt");
