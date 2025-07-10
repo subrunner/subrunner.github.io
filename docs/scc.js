@@ -143,6 +143,7 @@
       console.error(TAG_NAME, "Could not instantiate widget!", e);
       throw e;
     }
+    }
   };
   console.log(WIDGET_ID, "Registering widget", myWidgetDefinition);
   nitro.registerWidget(myWidgetDefinition);
