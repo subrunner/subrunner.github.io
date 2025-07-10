@@ -59,13 +59,11 @@
      */
     instantiate: function (context, domNode, initialProps, eventManager) {
       console.log(WIDGET_ID, "instantiate entering", context, domNode, initialProps);
-      domNode.innerHTML = 
-        `
-        <fieldset>
-          <label for="textbox">Enter text:</label>
-          <input type="text" id="textbox" name="textbox" placeholder="...">
-        </fieldset>
-        `
+      domNode.innerHTML =
+        `<fieldset>\n` +
+        `  <label for="textbox">Hello:</label>\n` +
+        `  <input type="text" id="textbox" name="textbox" placeholder="World...">\n` +
+        `</fieldset>\n` 
       return {
         // (optional) for display in various parts of the UI
         getDisplayTitle: function () {
