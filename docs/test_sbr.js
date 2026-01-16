@@ -306,8 +306,8 @@
     }
   };
   console.log(WIDGET_ID, "Registering widget", myWidgetDefinition);
- // nitro.registerWidget(myWidgetDefinition);
- console.log(WIDGET_ID, "deaktiviert")
+  nitro.registerWidget(myWidgetDefinition);
+ //console.log(WIDGET_ID, "deaktiviert")
 
   
 })();
